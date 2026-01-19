@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# Portafolio de Gisela Carballo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido a mi portafolio personal, donde presento mis proyectos, habilidades y experiencia como **desarrolladora frontend**. Este proyecto está construido con **React**, **TypeScript** y **Vite**, y está diseñado para mostrar mis habilidades en diseño, funcionalidad y experiencia de usuario.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Demo en vivo
 
-## React Compiler
+[Ver portafolio en Vercel](https://tu-portafolio.vercel.app)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## Tecnologías usadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React, TypeScript, CSS Modules
+- **Frameworks/Librerías:** Vite, react-icons, react-scroll
+- **Back-end / Integraciones:** Firebase (opcional), EmailJS (para formulario de contacto)
+- **Herramientas:** Git, GitHub, Vercel, Cloudinary
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Proyectos destacados
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Erova:** App de gestión de armario virtual y comunidad con React, TypeScript y Firebase.  
+- **GRI:** Proyecto académico con contenido multimedia y experiencia interactiva.  
+- **Planeo:** Landing interactiva con videos y animaciones, usando React y Capacitor.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+*(Cada proyecto incluye imágenes, videos y descripción en la sección correspondiente del portafolio)*
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Funcionalidades
+
+- Secciones interactivas: Hero, Sobre mí, Proyectos, Contacto
+- Navegación con smooth scrolling y routing
+- Carousel infinito de tecnologías
+- Formulario de contacto con validación
+- Responsive design para desktop y mobile
+

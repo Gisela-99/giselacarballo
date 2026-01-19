@@ -1,0 +1,192 @@
+.projectsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 2rem;
+  background: #ffffff;  
+  margin: 0 auto;   
+}
+
+/* Separación visual entre proyectos */
+.projectSection:not(:last-child) {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 4rem;
+}
+
+.projectSection {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.projectText {
+  flex: 1;
+  max-width: 500px;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #aa533f;
+  text-align: justify;
+}
+
+.projectText h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #c24e4e;
+}
+
+/* Badges de tecnologías */
+.techWrapper {
+  margin-bottom: 1rem;
+}
+.techBadge {
+  display: inline-block;
+  background: #ddd;
+  color: #333;
+  padding: 0.3rem 0.6rem;
+  margin: 0.2rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+/* Lista de features */
+.featuresList {
+  list-style: disc inside;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Sticky móvil con perspectiva */
+.stickyMobile {
+  flex: 1;
+  max-width: 300px;
+  /* position: sticky; */
+  top: 2rem;
+  height: fit-content;
+  perspective: 1000px;
+}
+
+/* Mockup tipo iPhone realista */
+.mobileMockup {
+  position: relative;
+  width: 300px;
+  height: 600px;            /* proporción realista */
+  border-radius: 50px;       /* curvas de móvil */
+  background: linear-gradient(145deg, #111, #222);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+/* Pantalla del móvil */
+.mobileScreen {
+  width: 90%;
+  height: 90%;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+}
+.mobileScreen img,
+.mobileScreen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cámara frontal */
+.mobileMockup::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #222;
+  box-shadow: 0 0 2px #555, 0 1px 2px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* Altavoz frontal */
+.mobileMockup .speaker {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  border-radius: 3px;
+  background: #333;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Botones lateral */
+.mobileMockup .buttonPower, 
+.mobileMockup .buttonVolume, 
+.mobileMockup .buttonVolume2 {
+  background: #333;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+}
+.mobileMockup .buttonPower {
+  position: absolute;
+  right: -6px;
+  top: 40%;
+  width: 4px;
+  height: 50px;
+}
+.mobileMockup .buttonVolume {
+  position: absolute;
+  left: -6px;
+  top: 30%;
+  width: 4px;
+  height: 30px;
+}
+.mobileMockup .buttonVolume2 {
+  position: absolute;
+  left: -6px;
+  top: 45%;
+  width: 4px;
+  height: 30px;
+}
+
+/* Reflejo sutil */
+.mobileMockup::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+  border-radius: 50px;
+  pointer-events: none;
+}
+
+/* Hover 3D opcional */
+.mobileMockup:hover {
+  transform: rotateY(8deg) rotateX(4deg);
+}
+
+/* Responsive: texto debajo del móvil */
+@media (max-width: 768px) {
+  .projectSection {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .projectText {
+    max-width: 100%;
+  }
+  /* .stickyMobile {
+    max-width: 50%;
+    margin: 0 auto;
+  } */
+}

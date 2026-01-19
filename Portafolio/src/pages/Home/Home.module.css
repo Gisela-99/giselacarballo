@@ -1,0 +1,23 @@
+/* Reset básico */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+.container {
+  width: 100%;
+  overflow-x: visible;
+}
+
+
+.typewriter {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 2rem;
+  line-height: 1.6;
+  color: #913f3f;
+  padding: 2rem;
+}
