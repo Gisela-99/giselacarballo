@@ -1,0 +1,30 @@
+
+
+.textContainer {
+    display: flex;
+    flex-wrap: wrap;  
+
+}
+
+.word {
+    margin: 0;
+    margin-right: 1rem;
+}
+
+.word span {
+    opacity: 0.2; 
+    display: inline-block;
+    
+}
+
+.cursor {
+  display: inline-block;
+  font-size: 3ssrem;   /* Igualar tamaño al texto */
+  color: #fff;       /* Color del cursor */
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
