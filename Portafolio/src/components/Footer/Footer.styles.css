@@ -1,5 +1,6 @@
 .footerContainer {
-  background: linear-gradient(135deg, #c05d4c, rgb(163, 80, 59));
+  /* background: linear-gradient(135deg, #c05d4c, rgb(163, 80, 59)); */
+  background: #962C2E;
   padding: 3rem 1.5rem;
   color: white;
 }
@@ -105,7 +106,7 @@ textarea::placeholder {
   border-radius: 10px;
   font-weight: bold;
   background: white;
-  color: #c05d4c;
+  /* color: #c05d4c; */
   cursor: pointer;
   transition: 0.3s ease;
 }

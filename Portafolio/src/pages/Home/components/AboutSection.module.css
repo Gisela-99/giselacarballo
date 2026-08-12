@@ -19,8 +19,8 @@
 
 .cursor {
   display: inline-block;
-  font-size: 3ssrem;   /* Igualar tamaño al texto */
-  color: #fff;       /* Color del cursor */
+  font-size: 3rem;   
+  color: #fff;       
   animation: blink 0.8s steps(2, start) infinite;
 }
 

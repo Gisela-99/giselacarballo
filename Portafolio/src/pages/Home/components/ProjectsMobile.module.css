@@ -3,13 +3,11 @@
   flex-direction: column;
   gap: 6rem;
   padding: 2rem;
-  background: #ffffff;  
   margin: 0 auto;   
 }
 
 /* Separación visual entre proyectos */
 .projectSection:not(:last-child) {
-  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding-bottom: 4rem;
 }
 
@@ -41,7 +39,6 @@
 }
 .techBadge {
   display: inline-block;
-  background: #ddd;
   color: #333;
   padding: 0.3rem 0.6rem;
   margin: 0.2rem;

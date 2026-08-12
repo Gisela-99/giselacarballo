@@ -1,0 +1,17 @@
+:root[data-theme="light"] {
+  --bg-color: #faf7f6;
+  --text-color: #1b1a1a;
+  --accent-color: rgba(180, 88, 69, 0.6);
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #1b1a1a;
+  --text-color: #faf7f6;
+  --accent-color: rgba(180, 88, 69, 0.8);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -8,15 +8,12 @@ import { FaReact, FaGithub, FaHtml5, FaCss3Alt,FaWordpress } from "react-icons/f
 import { SiTypescript, SiJavascript, SiFirebase } from "react-icons/si"
 import { IoLogoCapacitor } from "react-icons/io5";
 
-// import {PortfolioCard} from '../../components/Cards/Cards';
-
 export default function Home() {
 
    
   return (
     <div className={styles.container}>
       <Hero/>
-      {/* <AboutSection /> */}
       <section id="about">
         <Typewriter
           className={styles.typewriter}
@@ -44,16 +41,7 @@ export default function Home() {
           <SiFirebase color="#FFCA28" />,
         ]}
       />
-       {/* <PortfolioCard
-          videoSrc={ErovaImge}
-        title="Erova"
-        description="Una app creada con React 19, Vite y Firebase. Con mi equipo implementamos Firestore para la gestión de datos, Cloudinary para optimizar imágenes y Google Generative AI para recomendaciones personalizadas. También desarrollamos flujos clave como registro, armario virtual y comunidad, y adaptamos la app a móviles con Capacitor."
-        tags={["React", "TypeScript", "UI/UX"]}
-        href="https://mi-proyecto-ejemplo.dev"
-      >
-      </PortfolioCard> */}
-
-
+      
       <ProjectsMobile id="projects" />  
       <ProjectsSection />
     </div>
