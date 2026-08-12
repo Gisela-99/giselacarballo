@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import Typewriter from "./components/AboutSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ProjectsMobile from "./components/ProjectsMobile";
+import EducationSection from "../../components/EducationTimeline/EducationTimeline";
 import styles from "./Home.module.css";
 import InfiniteIconCarousel from "../../components/InfiniteCarousel/InfiniteCarousel";
 import { FaReact, FaGithub, FaHtml5, FaCss3Alt,FaWordpress } from "react-icons/fa";
@@ -41,7 +42,7 @@ export default function Home() {
           <SiFirebase color="#FFCA28" />,
         ]}
       />
-      
+      <EducationSection></EducationSection>
       <ProjectsMobile id="projects" />  
       <ProjectsSection />
     </div>

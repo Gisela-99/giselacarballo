@@ -30,6 +30,9 @@ const Navbar: React.FC<{ className?: string }> = ({ className }) => {
               Sobre Mí
             </ScrollLink>
           </li>
+          <ScrollLink to="education" smooth={true} duration={500} className={styles.navLink} onClick={closeMenu}>
+            Trayectoria
+          </ScrollLink>
           <li>
             <ScrollLink to="projects" smooth={true} duration={500} className={styles.navLink} onClick={closeMenu}>
               Proyectos
