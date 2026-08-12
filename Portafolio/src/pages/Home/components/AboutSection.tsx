@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import styles from "./AboutSection.module.css";
 
 type Step =
   | { type: "write"; text: string }
@@ -7,10 +8,11 @@ type Step =
 
 interface TypewriterProps {
   steps?: Step[];
-  speed?: number; // velocidad base (ms)
+  speed?: number;
   loop?: boolean;
-  triggerOnScroll?: boolean; 
+  triggerOnScroll?: boolean;
   className?: string;
+  hideCursorWhenDone?: boolean;
 }
 
 const Typewriter: React.FC<TypewriterProps> = ({
@@ -19,12 +21,13 @@ const Typewriter: React.FC<TypewriterProps> = ({
   loop = false,
   triggerOnScroll = true,
   className = "",
+  hideCursorWhenDone = false,
 }) => {
   const [output, setOutput] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const started = useRef(!triggerOnScroll);
 
-  // Tipo de cursor accesible
   const cursor = "|";
 
   useEffect(() => {
@@ -47,6 +50,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
   }, []);
 
   const runSequence = async () => {
+    setIsTyping(true);
     do {
       for (const step of steps || []) {
         if (step.type === "write") {
@@ -60,12 +64,13 @@ const Typewriter: React.FC<TypewriterProps> = ({
         }
       }
     } while (loop);
+
+    setIsTyping(false);
   };
 
   const typeText = async (text: string) => {
     for (let i = 0; i < text.length; i++) {
       setOutput((prev) => prev + text[i]);
-
       const randomSpeed = speed + Math.random() * speed * 0.8;
       await wait(randomSpeed);
     }
@@ -73,10 +78,8 @@ const Typewriter: React.FC<TypewriterProps> = ({
 
   const deleteText = async (count: number | "all") => {
     const total = count === "all" ? output.length : count;
-
     for (let i = 0; i < total; i++) {
       setOutput((prev) => prev.slice(0, -1));
-
       const randomSpeed = speed * 0.6 + Math.random() * speed * 0.4;
       await wait(randomSpeed);
     }
@@ -85,10 +88,16 @@ const Typewriter: React.FC<TypewriterProps> = ({
   const wait = (time: number) =>
     new Promise((resolve) => setTimeout(resolve, time));
 
+  const showCursor = !(hideCursorWhenDone && !isTyping);
+
   return (
     <div ref={containerRef} className={className} aria-live="polite">
       {output}
-      <span className="cursor">{cursor}</span>
+      {showCursor && (
+        <span className={`${styles.cursor} ${!isTyping ? styles.cursorStatic : ""}`}>
+          {cursor}
+        </span>
+      )}
     </div>
   );
 };

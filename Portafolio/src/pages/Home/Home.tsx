@@ -16,6 +16,7 @@ export default function Home() {
     <div className={styles.container}>
       <Hero/>
       <section id="about">
+         <div className={styles.sectionDivider}></div>
         <Typewriter
           className={styles.typewriter}
            speed={70}
@@ -27,7 +28,9 @@ export default function Home() {
           ]}
         />
       </section>
-      <InfiniteIconCarousel
+      <EducationSection></EducationSection>
+      <ProjectsMobile id="projects" />  
+       <InfiniteIconCarousel
         size={70}        
         speed={22}       
         items={[
@@ -42,8 +45,6 @@ export default function Home() {
           <SiFirebase color="#FFCA28" />,
         ]}
       />
-      <EducationSection></EducationSection>
-      <ProjectsMobile id="projects" />  
       <ProjectsSection />
     </div>
   );
