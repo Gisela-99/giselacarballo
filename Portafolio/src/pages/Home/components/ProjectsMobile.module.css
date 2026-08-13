@@ -1,12 +1,11 @@
 .projectsWrapper {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 3rem;
   padding: 2rem;
-  margin: 0 auto;   
+  margin: 0 auto;
 }
 
-/* Separación visual entre proyectos */
 .projectSection:not(:last-child) {
   padding-bottom: 4rem;
 }
@@ -59,49 +58,66 @@
   transform: translateY(-2px);
 }
 
-/* Lista de features */
 .featuresList {
   list-style: disc inside;
   padding-left: 0;
   margin: 0;
 }
 
-/* Sticky móvil con perspectiva */
 .stickyMobile {
+  position: relative;
   flex: 1;
-  max-width: 300px;
-  /* position: sticky; */
+  max-width: 500px;
   top: 2rem;
   height: fit-content;
   perspective: 1000px;
 }
 
-/* Mockup tipo iPhone realista */
+.stickyMobile::before {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.25), transparent 70%);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+/* ================= MOCKUP MÓVIL (Erova) ================= */
 .mobileMockup {
   position: relative;
   width: 300px;
-  height: 600px;            /* proporción realista */
-  border-radius: 50px;       /* curvas de móvil */
+  height: 600px;
+  margin: 0 auto;
+  border-radius: 50px;
   background: linear-gradient(145deg, #111, #222);
-  box-shadow: 
-    0 20px 40px rgba(0,0,0,0.5),
-    inset 0 0 0 1px rgba(255,255,255,0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   transform-style: preserve-3d;
-  transition: transform 0.3s ease;
+  transform: rotateY(-6deg) rotateX(2deg);
+  transition: transform 0.4s ease;
 }
 
-/* Pantalla del móvil */
+.mobileMockup:hover {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+
 .mobileScreen {
+  position: relative;
+  z-index: 10;
   width: 90%;
   height: 90%;
   border-radius: 36px;
   overflow: hidden;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.15);
 }
+
 .mobileScreen img,
 .mobileScreen video {
   width: 100%;
@@ -109,7 +125,6 @@
   object-fit: cover;
 }
 
-/* Cámara frontal */
 .mobileMockup::before {
   content: '';
   position: absolute;
@@ -120,12 +135,11 @@
   height: 12px;
   border-radius: 50%;
   background: #222;
-  box-shadow: 0 0 2px #555, 0 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 0 2px #555, 0 1px 2px rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
 
-/* Altavoz frontal */
-.mobileMockup .speaker {
+.speaker {
   position: absolute;
   top: 12px;
   left: 50%;
@@ -134,40 +148,40 @@
   height: 6px;
   border-radius: 3px;
   background: #333;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
-/* Botones lateral */
-.mobileMockup .buttonPower, 
-.mobileMockup .buttonVolume, 
-.mobileMockup .buttonVolume2 {
+.buttonPower,
+.buttonVolume,
+.buttonVolume2 {
+  position: absolute;
   background: #333;
   border-radius: 2px;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
-.mobileMockup .buttonPower {
-  position: absolute;
+
+.buttonPower {
   right: -6px;
   top: 40%;
   width: 4px;
   height: 50px;
 }
-.mobileMockup .buttonVolume {
-  position: absolute;
+
+.buttonVolume {
   left: -6px;
   top: 30%;
   width: 4px;
   height: 30px;
 }
-.mobileMockup .buttonVolume2 {
-  position: absolute;
+
+.buttonVolume2 {
   left: -6px;
   top: 45%;
   width: 4px;
   height: 30px;
 }
 
-/* Reflejo sutil */
 .mobileMockup::after {
   content: '';
   position: absolute;
@@ -175,16 +189,84 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 40%);
   border-radius: 50px;
   pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 5;
 }
 
-/* Hover 3D opcional */
-.mobileMockup:hover {
-  transform: rotateY(8deg) rotateX(4deg);
+/* ================= MOCKUP NAVEGADOR (Secret Barcelona, Planeo) ================= */
+.browserMockup {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #1a1a1a;
+  box-shadow: 0 25px 50px -12px rgba(150, 44, 46, 0.3);
+  transform: rotateY(-4deg) rotateX(1deg);
+  transition: transform 0.4s ease;
 }
 
+.browserMockup:hover {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+
+.browserBar {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #2a2a2a;
+}
+
+.browserBar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #555;
+}
+
+.browserBar span:nth-child(1) {
+  background: #ff5f56;
+}
+
+.browserBar span:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.browserBar span:nth-child(3) {
+  background: #27c93f;
+}
+
+.browserScreen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ================= LOGOS ================= */
+.logoContainer {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.logoContainer img,
+.logoContainer video {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.logoContainer video {
+  transform: scale(1.5);
+  transform-origin: center;
+}
+
+/* ================= STATUS Y LINKS ================= */
 .projectStatus {
   font-size: 0.85rem;
   font-style: italic;
@@ -216,41 +298,27 @@
   transform: translateY(-2px);
 }
 
-.logoContainer {
-  height: 100px; 
-  /* width: auto; */
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; 
-  margin-bottom: 1rem;
-}
-
-.logoContainer img,
-.logoContainer video {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-}
-
-.logoContainer video {
-  transform: scale(1.5); /* ajusta el número hasta que se vea bien */
-  transform-origin: center;
-}
-/* Responsive: texto debajo del móvil */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
+  .projectsWrapper{
+    gap: 1rem;  
+  }
   .projectSection {
     flex-direction: column;
     text-align: center;
     align-items: center;
   }
+
   .projectText {
     max-width: 100%;
   }
+
   .logoContainer {
     height: 60px;
   }
-  /* .stickyMobile {
-    max-width: 50%;
-    margin: 0 auto;
-  } */
+
+  .mobileMockup,
+  .browserMockup {
+    transform: none;
+  }
 }
