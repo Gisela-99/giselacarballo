@@ -1,8 +1,8 @@
 import Hero from "./components/Hero";
-import Typewriter from "./components/AboutSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ProjectsMobile from "./components/ProjectsMobile";
 import EducationSection from "../../components/EducationTimeline/EducationTimeline";
+import AboutSection from "./components/AboutSection";
 import styles from "./Home.module.css";
 import InfiniteIconCarousel from "../../components/InfiniteCarousel/InfiniteCarousel";
 import { FaReact, FaGithub, FaHtml5, FaCss3Alt,FaWordpress } from "react-icons/fa";
@@ -16,17 +16,7 @@ export default function Home() {
     <div className={styles.container}>
       <Hero/>
       <section id="about">
-         <div className={styles.sectionDivider}></div>
-        <Typewriter
-          className={styles.typewriter}
-           speed={70}
-           loop={false}
-          triggerOnScroll
-          steps={[
-        
-            {type: "write", text: " Hola, Soy Gisela. Una programadora frontend apasionada por crear experiencias digitales que combinan diseño y funcionalidad. Mi formación en Historia del Arte me ha brindado creatividad, sensibilidad estética y atención al detalle, cualidades que aplico en cada proyecto que desarrollo" },
-          ]}
-        />
+        <AboutSection />
       </section>
       <EducationSection></EducationSection>
       <ProjectsMobile id="projects" />  

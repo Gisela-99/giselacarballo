@@ -1,0 +1,45 @@
+.textContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.word {
+    margin: 0;
+    margin-right: 1rem;
+}
+
+.word span {
+    opacity: 0.2;
+    display: inline-block;
+}
+
+.cursor {
+  display: inline-block;
+  font-size: 1em;
+  color: currentColor;
+  margin-left: 0.3em;
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+/* Cuando la secuencia termina: cursor fijo, sin parpadeo */
+.cursorStatic {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .cursor {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  .cursor {
+    font-size: 0.75em;
+  }
+}
