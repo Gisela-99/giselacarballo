@@ -35,15 +35,28 @@
 
 /* Badges de tecnologías */
 .techWrapper {
-  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
 }
+
 .techBadge {
-  display: inline-block;
-  color: #333;
-  padding: 0.3rem 0.6rem;
-  margin: 0.2rem;
-  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(150, 44, 46, 0.1);
+  color: #962C2E;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
   font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(150, 44, 46, 0.25);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.techBadge:hover {
+  background: rgba(150, 44, 46, 0.2);
+  transform: translateY(-2px);
 }
 
 /* Lista de features */
@@ -172,6 +185,57 @@
   transform: rotateY(8deg) rotateX(4deg);
 }
 
+.projectStatus {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #7b2f23;
+  opacity: 0.8;
+  margin-top: 0.8rem;
+}
+
+.projectLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.linkBtn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: #962C2E;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.linkBtn:hover {
+  background: #7b2f23;
+  transform: translateY(-2px);
+}
+
+.logoContainer {
+  height: 100px; 
+  /* width: auto; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  margin-bottom: 1rem;
+}
+
+.logoContainer img,
+.logoContainer video {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.logoContainer video {
+  transform: scale(1.5); /* ajusta el número hasta que se vea bien */
+  transform-origin: center;
+}
 /* Responsive: texto debajo del móvil */
 @media (max-width: 768px) {
   .projectSection {
@@ -181,6 +245,9 @@
   }
   .projectText {
     max-width: 100%;
+  }
+  .logoContainer {
+    height: 60px;
   }
   /* .stickyMobile {
     max-width: 50%;
