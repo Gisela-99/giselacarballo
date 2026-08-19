@@ -54,8 +54,6 @@ const educationData: TimelineEntry[] = [
   },
 ];
 
-// Cada TimelineItem avisa a su padre (onVisible) en el momento exacto
-// en que se revela, en vez de gestionar su visibilidad de forma aislada.
 function TimelineItem({
   entry,
   index,
@@ -108,15 +106,7 @@ function TimelineItem({
 
 const EducationTimeline = () => {
   const wrapperRef = useRef<HTMLElement>(null);
-
-  // Índice más alto de tarjeta que ya se ha revelado. Empieza en -1
-  // (ninguna revelada todavía).
   const highestVisibleRef = useRef(-1);
-
-  // Cuando una tarjeta se revela, actualizamos --line-progress según
-  // CUÁNTAS tarjetas van visibles hasta ahora, no según el scroll bruto.
-  // Así la línea SIEMPRE llega exactamente hasta la última tarjeta visible,
-  // sin desincronizarse nunca.
   const handleItemVisible = useCallback((index: number) => {
     if (index > highestVisibleRef.current) {
       highestVisibleRef.current = index;
