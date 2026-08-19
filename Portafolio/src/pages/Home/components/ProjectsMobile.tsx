@@ -57,7 +57,7 @@ function ProjectsMobile({ id }: Props) {
 
   return (
     <div className={styles.projectsWrapper} id={id}>
-      <h1 style={{ color: '#aa533f', textAlign: 'center', fontSize: '3rem' }}>Proyectos</h1>
+      <h2 style={{ color: '#aa533f', textAlign: 'center', fontSize: '3rem' }}>Proyectos</h2>
       {projects.map((project, index) => (
         <div className={styles.projectSection} key={index}>
           <div className={styles.stickyMobile}>

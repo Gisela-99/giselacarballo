@@ -21,6 +21,7 @@
   justify-content: center;
   opacity: 0.9;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .slide:hover {

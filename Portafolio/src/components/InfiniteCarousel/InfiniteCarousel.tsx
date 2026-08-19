@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./InfiniteIconCarousel.module.css";
 
 interface Props {
-  items: React.ReactNode[]; // iconos JSX
-  speed?: number; // segundos de animación
-  size?: number; // tamaño de los iconos
+  items: React.ReactNode[]; 
+  speed?: number; 
+  size?: number; 
 }
 
 const InfiniteIconCarousel: React.FC<Props> = ({

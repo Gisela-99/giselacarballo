@@ -1,5 +1,4 @@
 import Hero from "./components/Hero";
-import ProjectsSection from "./components/ProjectsSection";
 import ProjectsMobile from "./components/ProjectsMobile";
 import EducationSection from "../../components/EducationTimeline/EducationTimeline";
 import AboutSection from "./components/AboutSection";
@@ -18,7 +17,6 @@ export default function Home() {
       <section id="about">
         <AboutSection />
       </section>
-      <EducationSection></EducationSection>
       <ProjectsMobile id="projects" />  
        <InfiniteIconCarousel
         size={70}        
@@ -35,7 +33,7 @@ export default function Home() {
           <SiFirebase color="#FFCA28" />,
         ]}
       />
-      <ProjectsSection />
+       <EducationSection/>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import styles from "./Hero.module.css";
+import Typewriter from "./TypewriterSection";
 
 function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -15,7 +16,6 @@ function Hero() {
     hero.style.setProperty("--mouse-x", `${x}%`);
     hero.style.setProperty("--mouse-y", `${y}%`);
 
-    // parallax: las luces se mueven ligeramente en dirección opuesta al cursor
     const moveX = (x - 50) * 0.3;
     const moveY = (y - 50) * 0.3;
     hero.style.setProperty("--parallax-x", `${moveX}px`);
@@ -35,8 +35,29 @@ function Hero() {
       <div className={styles.cursorLight}></div>
 
       <div className={styles.content}>
+        {/* El nombre se queda estático: es tu identidad, no necesita animarse */}
         <h1 className={styles.title}>Gisela Carballo Urquidi</h1>
-        <p className={styles.subtitle}>Desarrolladora Frontend</p>
+
+        {/* El subtítulo rota entre tus 3 perfiles reales con el Typewriter */}
+        <p className={styles.subtitle}>
+          <Typewriter
+            steps={[
+              { type: "write", text: "Desarrolladora Frontend" },
+              { type: "pause", duration: 1800 },
+              { type: "delete", count: "all" },
+              { type: "write", text: "Diseñadora UI/UX" },
+              { type: "pause", duration: 1800 },
+              { type: "delete", count: "all" },
+              { type: "write", text: "WordPress & Figma" },
+              { type: "pause", duration: 1800 },
+              { type: "delete", count: "all" },
+            ]}
+            speed={45}
+            loop
+            triggerOnScroll={false}
+            hideCursorWhenDone={false}
+          />
+        </p>
 
         <a href="#projects" className={styles.buttonHero}>
           Ver Proyectos

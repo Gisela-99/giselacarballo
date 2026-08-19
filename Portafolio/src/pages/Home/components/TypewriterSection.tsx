@@ -28,9 +28,17 @@ const Typewriter: React.FC<TypewriterProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const started = useRef(!triggerOnScroll);
 
+  const outputRef = useRef("");
+
+  // 🔑 Bandera clave del fix: evita que dos secuencias corran a la vez
+  // cuando React StrictMode monta el efecto dos veces en desarrollo.
+  const cancelledRef = useRef(false);
+
   const cursor = "|";
 
   useEffect(() => {
+    cancelledRef.current = false;
+
     if (triggerOnScroll) {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -42,9 +50,15 @@ const Typewriter: React.FC<TypewriterProps> = ({
         { threshold: 0.1 }
       );
       if (containerRef.current) observer.observe(containerRef.current);
-      return () => observer.disconnect();
+      return () => {
+        observer.disconnect();
+        cancelledRef.current = true;
+      };
     } else {
       runSequence();
+      return () => {
+        cancelledRef.current = true;
+      };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -53,6 +67,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
     setIsTyping(true);
     do {
       for (const step of steps || []) {
+        if (cancelledRef.current) return;
         if (step.type === "write") {
           await typeText(step.text);
         }
@@ -63,23 +78,34 @@ const Typewriter: React.FC<TypewriterProps> = ({
           await deleteText(step.count);
         }
       }
-    } while (loop);
+    } while (loop && !cancelledRef.current);
 
-    setIsTyping(false);
+    if (!cancelledRef.current) setIsTyping(false);
   };
 
   const typeText = async (text: string) => {
     for (let i = 0; i < text.length; i++) {
-      setOutput((prev) => prev + text[i]);
+      if (cancelledRef.current) return;
+      setOutput((prev) => {
+        const next = prev + text[i];
+        outputRef.current = next;
+        return next;
+      });
       const randomSpeed = speed + Math.random() * speed * 0.8;
       await wait(randomSpeed);
     }
   };
 
   const deleteText = async (count: number | "all") => {
-    const total = count === "all" ? output.length : count;
+    const total = count === "all" ? outputRef.current.length : count;
+
     for (let i = 0; i < total; i++) {
-      setOutput((prev) => prev.slice(0, -1));
+      if (cancelledRef.current) return;
+      setOutput((prev) => {
+        const next = prev.slice(0, -1);
+        outputRef.current = next;
+        return next;
+      });
       const randomSpeed = speed * 0.6 + Math.random() * speed * 0.4;
       await wait(randomSpeed);
     }

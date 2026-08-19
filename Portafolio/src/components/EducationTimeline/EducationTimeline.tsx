@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./EducationTimeline.module.css";
 
 interface TimelineEntry {
@@ -53,24 +54,91 @@ const educationData: TimelineEntry[] = [
   },
 ];
 
-const EducationTimeline = () => {
+// Cada TimelineItem avisa a su padre (onVisible) en el momento exacto
+// en que se revela, en vez de gestionar su visibilidad de forma aislada.
+function TimelineItem({
+  entry,
+  index,
+  onVisible,
+}: {
+  entry: TimelineEntry;
+  index: number;
+  onVisible: (index: number) => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entryObs]) => {
+        if (entryObs.isIntersecting) {
+          setIsVisible(true);
+          onVisible(index);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <section className={styles.timelineWrapper} id="education">
-      <h2 className={styles.sectionTitle}>Educación</h2>
+    <div
+      ref={ref}
+      className={`${styles.timelineEntry} ${styles[entry.side]} ${
+        isVisible ? styles.visible : ""
+      }`}
+    >
+      <div className={styles.marker}>
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.5L4.5 12.36V16c0 2.21 3.36 4 7.5 4s7.5-1.79 7.5-4v-3.64L12 16.5z" />
+        </svg>
+      </div>
+      <div className={styles.entryPeriod}>{entry.period}</div>
+      <div className={styles.entryContent}>
+        <h3>{entry.title}</h3>
+        <span className={styles.place}>{entry.place}</span>
+        <p>{entry.description}</p>
+      </div>
+    </div>
+  );
+}
+
+const EducationTimeline = () => {
+  const wrapperRef = useRef<HTMLElement>(null);
+
+  // Índice más alto de tarjeta que ya se ha revelado. Empieza en -1
+  // (ninguna revelada todavía).
+  const highestVisibleRef = useRef(-1);
+
+  // Cuando una tarjeta se revela, actualizamos --line-progress según
+  // CUÁNTAS tarjetas van visibles hasta ahora, no según el scroll bruto.
+  // Así la línea SIEMPRE llega exactamente hasta la última tarjeta visible,
+  // sin desincronizarse nunca.
+  const handleItemVisible = useCallback((index: number) => {
+    if (index > highestVisibleRef.current) {
+      highestVisibleRef.current = index;
+    }
+    const progress = (highestVisibleRef.current + 1) / educationData.length;
+    wrapperRef.current?.style.setProperty("--line-progress", progress.toString());
+  }, []);
+
+  return (
+    <section
+      className={styles.timelineWrapper}
+      id="education"
+      ref={wrapperRef as React.RefObject<HTMLElement>}
+    >
+      <h2 className={styles.sectionTitle}>Formación</h2>
       {educationData.map((entry, index) => (
-        <div key={index} className={`${styles.timelineEntry} ${styles[entry.side]}`}>
-          <div className={styles.marker}>
-            <svg viewBox="0 0 24 24">
-              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.5L4.5 12.36V16c0 2.21 3.36 4 7.5 4s7.5-1.79 7.5-4v-3.64L12 16.5z" />
-            </svg>
-          </div>
-          <div className={styles.entryPeriod}>{entry.period}</div>
-          <div className={styles.entryContent}>
-            <h3>{entry.title}</h3>
-            <span className={styles.place}>{entry.place}</span>
-            <p>{entry.description}</p>
-          </div>
-        </div>
+        <TimelineItem
+          key={index}
+          entry={entry}
+          index={index}
+          onVisible={handleItemVisible}
+        />
       ))}
     </section>
   );
