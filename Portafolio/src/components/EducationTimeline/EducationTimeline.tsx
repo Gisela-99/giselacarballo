@@ -1,5 +1,14 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./EducationTimeline.module.css";
+// Importamos los iconos dinámicos de react-icons/fa
+import { 
+  FaPalette, 
+  FaPaintBrush, 
+  FaWordpress, 
+  FaReact, 
+  FaMobileAlt, 
+  FaPython 
+} from "react-icons/fa";
 
 interface TimelineEntry {
   period: string;
@@ -7,6 +16,7 @@ interface TimelineEntry {
   place: string;
   description: string;
   side: "left" | "right";
+  icon: React.ReactNode;
 }
 
 const educationData: TimelineEntry[] = [
@@ -14,43 +24,49 @@ const educationData: TimelineEntry[] = [
     period: "2018 - 2023",
     title: "Grado en Historia del Arte",
     place: "Universidad Autónoma de Barcelona",
-    description: "Formación en análisis visual, historia cultural y sensibilidad estética, hoy aplicada al diseño de interfaces.",
+    description: "Formación en análisis visual, historia cultural y sensibilidad estética, aportando criterio para el diseño de interfaces.",
     side: "left",
+    icon: <FaPalette />,
   },
   {
     period: "Ene - Mar 2024",
     title: "Diseño Gráfico y Creación de Contenidos",
     place: "GRI",
-    description: "Edición de imágenes con Photoshop y de vídeo, con enfoque en producción y optimización de contenido digital.",
+    description: "Edición de imágenes con Photoshop y vídeo, enfocada en la producción de contenido digital.",
     side: "right",
+    icon: <FaPaintBrush />,
   },
   {
     period: "Abr - Jul 2024",
     title: "Confección y Publicación de Páginas Web",
     place: "Centre d'Estudis The Corner",
-    description: "Gestión y mantenimiento técnico de temas y plugins en WordPress, con personalizaciones básicas.",
+    description: "Introducción a los fundamentos del desarrollo web (HTML/CSS) y gestión básica de contenidos en WordPress.",
     side: "left",
+    icon: <FaWordpress />,
   },
   {
     period: "Sep - Dic 2024",
     title: "JavaScript y React.js",
     place: "Fundación Esplai",
-    description: "Implementación del frontend público de Planeo con React y TypeScript, componentización y animaciones con GSAP y Framer Motion.",
+    description: "Desarrollo frontend con React, TypeScript y animaciones interactivas con GSAP y Framer Motion.",
     side: "right",
+    icon: <FaReact />,
   },
   {
     period: "Feb - Nov 2025",
-    title: "Desarrollo de Aplicación Móvil (Erova)",
+    title: "Desarrollo de Aplicaciones Móviles",
     place: "Apps Factory (Aspasia)",
-    description: "Desarrollo de una app de armario digital con sistema de recomendaciones, con React, React Native y Firebase.",
+    description: "Desarrollo de aplicaciones móviles con React, Capacitor y gestión de datos con Firebase.",
     side: "left",
+    icon: <FaMobileAlt />,
   },
   {
     period: "Feb - Mar 2026",
     title: "Fundamentos de Programación en Python",
     place: "La Salle URL",
-    description: "Formación práctica en Python: sintaxis, estructuras de datos y resolución de problemas.",
+    description: "Formación práctica en sintaxis, estructuras de datos y resolución de problemas algorítmicos.",
     side: "right",
+    icon: <FaPython />,
   },
 ];
 
@@ -79,8 +95,7 @@ function TimelineItem({
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [index, onVisible]);
 
   return (
     <div
@@ -89,10 +104,9 @@ function TimelineItem({
         isVisible ? styles.visible : ""
       }`}
     >
+      {/* Círculo con el icono dinámico */}
       <div className={styles.marker}>
-        <svg viewBox="0 0 24 24">
-          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.5L4.5 12.36V16c0 2.21 3.36 4 7.5 4s7.5-1.79 7.5-4v-3.64L12 16.5z" />
-        </svg>
+        {entry.icon}
       </div>
       <div className={styles.entryPeriod}>{entry.period}</div>
       <div className={styles.entryContent}>
@@ -107,6 +121,7 @@ function TimelineItem({
 const EducationTimeline = () => {
   const wrapperRef = useRef<HTMLElement>(null);
   const highestVisibleRef = useRef(-1);
+
   const handleItemVisible = useCallback((index: number) => {
     if (index > highestVisibleRef.current) {
       highestVisibleRef.current = index;
@@ -124,7 +139,7 @@ const EducationTimeline = () => {
       <h2 className={styles.sectionTitle}>Formación</h2>
       {educationData.map((entry, index) => (
         <TimelineItem
-          key={index}
+          key={`${entry.title}-${index}`}
           entry={entry}
           index={index}
           onVisible={handleItemVisible}
