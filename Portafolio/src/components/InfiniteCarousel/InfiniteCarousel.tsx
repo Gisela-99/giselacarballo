@@ -12,17 +12,22 @@ const InfiniteIconCarousel: React.FC<Props> = ({
   speed = 18,
   size = 60,
 }) => {
+  // Duplicamos la lista para asegurar un bucle infinito continuo
+  const duplicatedItems = [...items, ...items, ...items];
+
   return (
-    <div className={styles.slider}>
-      <div
-        className={styles.slideTrack}
-        style={{ animationDuration: `${speed}s` }}
-      >
-        {[...items, ...items].map((item, i) => (
-          <div key={i} className={styles.slide} style={{ fontSize: size }}>
-            {item}
-          </div>
-        ))}
+    <div className={styles.sliderContainer}>
+      <div className={styles.slider}>
+        <div
+          className={styles.slideTrack}
+          style={{ animationDuration: `${speed}s` }}
+        >
+          {duplicatedItems.map((item, i) => (
+            <div key={`tech-icon-${i}`} className={styles.slide} style={{ fontSize: size }}>
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
