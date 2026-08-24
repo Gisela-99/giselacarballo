@@ -1,3 +1,11 @@
+/* Título principal de la sección */
+.sectionTitle {
+  color: #aa533f;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
 .projectsWrapper {
   display: flex;
   flex-direction: column;
@@ -20,10 +28,10 @@
 .projectText {
   flex: 1;
   max-width: 500px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #aa533f;
-  text-align: justify;
+  text-align: left;
 }
 
 .projectText h2 {
@@ -44,7 +52,7 @@
   display: inline-flex;
   align-items: center;
   background: rgba(150, 44, 46, 0.1);
-  color: #962C2E;
+  color: #962c2e;
   padding: 0.35rem 0.9rem;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -284,7 +292,7 @@
 .linkBtn {
   display: inline-block;
   padding: 0.6rem 1.4rem;
-  background: #962C2E;
+  background: #962c2e;
   color: white;
   text-decoration: none;
   border-radius: 10px;
@@ -298,14 +306,20 @@
   transform: translateY(-2px);
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE (Siempre debe ir al final) ================= */
 @media (max-width: 768px) {
-  .projectsWrapper{
-    gap: 1rem;  
+  .sectionTitle {
+    font-size: 2.2rem;
   }
+
+  .projectsWrapper {
+    gap: 2rem;
+    padding: 1rem;
+  }
+
   .projectSection {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     align-items: center;
   }
 
@@ -315,6 +329,16 @@
 
   .logoContainer {
     height: 60px;
+    justify-content: center;
+  }
+
+  .techWrapper,
+  .projectLinks {
+    justify-content: center;
+  }
+
+  .stickyMobile {
+    top: 0;
   }
 
   .mobileMockup,

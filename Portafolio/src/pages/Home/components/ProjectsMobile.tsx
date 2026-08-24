@@ -15,11 +15,11 @@ function ProjectsMobile({ id }: Props) {
       title: 'Secret Barcelona',
       image: DESKTOP_SECRET,
       logo: LogoSecretBarcelona,
-      logoType: 'img',
+      logoType: 'img' as const,
       display: 'browser' as const,
       tech: ['WordPress', 'Elementor', 'Figma', 'HTML/CSS', 'SEO', 'Diseño UI'],
       features: [
-        'Rediseño completo del sitio web de esta agencia de viajes especializada en destinos por España y Portugal: diseñé la paleta de colores y los componentes en Figma, y los maqueté en WordPress. Desarrollé con IA un plugin de mapa interactivo y widgets personalizados en HTML/CSS. Colaboración remunerada continuada tras las prácticas.',
+        'Realicé el rediseño completo del sitio web en Figma y maqueté los componentes en WordPress para esta agencia de viajes. Desarrollé con IA un plugin de mapa interactivo y widgets personalizados en HTML/CSS, además de aplicar optimizaciones SEO. Tras las prácticas, la empresa continuó contando conmigo para una colaboración remunerada.',
       ],
       status: '',
       repo: '',
@@ -29,13 +29,13 @@ function ProjectsMobile({ id }: Props) {
       title: 'Erova',
       image: MOVIL1_IMG,
       logo: LogoErova,
-      logoType: 'video',
+      logoType: 'video' as const,
       display: 'mobile' as const,
-      tech: ['React', 'Firebase', 'Cloudinary', 'Capacitor', 'Framer Motion', 'CSS Modules'],
+      tech: ['React 19', 'Firebase', 'Cloudinary', 'Capacitor', 'Framer Motion', 'CSS Modules'],
       features: [
-        'App de armario digital construida con React 19, Vite y Firebase. Implementé Firestore para la gestión de datos en tiempo real, integré Cloudinary para optimizar la carga de imágenes y Google Generative AI para recomendaciones de outfits personalizadas. Desarrollé los flujos de registro, armario virtual y comunidad, y adapté la app a iOS/Android con Capacitor para una experiencia nativa.',
+        'Desarrollé una aplicación de armario digital multiplataforma (iOS/Android) con React y Capacitor. Implementé Firestore para gestión de datos en tiempo real, Cloudinary para la optimización de imágenes e integré la API de Google Generative AI para generar sugerencias de outfits personalizadas.',
       ],
-      status: 'Prototipo funcional durante el desarrollo; actualmente pausado por costes de infraestructura (Firebase, Cloudinary, IA generativa).',
+      status: 'Prototipo funcional activo; uso de APIs en la nube e IA limitado para optimizar y controlar los costes de consumo.',
       repo: '',
       link: '',
     },
@@ -47,9 +47,9 @@ function ProjectsMobile({ id }: Props) {
       display: 'browser' as const,
       tech: ['React', 'Tailwind CSS', 'GSAP', 'Framer Motion'],
       features: [
-        'Me encargué de la maquetación frontend de las páginas públicas del proyecto (inicio, sobre nosotros, contacto y registro) con React y Tailwind CSS, e implementé las animaciones e interacciones con GSAP y Framer Motion para reforzar la experiencia de usuario en cada transición. El backend (Node.js, Express, PostgreSQL) y la validación de formularios fueron desarrollados por el resto del equipo.',
+        'Me encargué del desarrollo frontend de las páginas públicas del proyecto. Construí la interfaz responsiva con React y Tailwind CSS, e implementé animaciones complejas e interacciones con GSAP y Framer Motion para enriquecer la experiencia de usuario, integrando la UI con el trabajo del equipo de backend.',
       ],
-      status: 'Proyecto de bootcamp, activo como demo.',
+      status: 'Proyecto de bootcamp desplegado y activo como demo.',
       repo: '',
       link: 'https://planeo.vercel.app',
     },
@@ -57,9 +57,9 @@ function ProjectsMobile({ id }: Props) {
 
   return (
     <div className={styles.projectsWrapper} id={id}>
-      <h2 style={{ color: '#aa533f', textAlign: 'center', fontSize: '3rem' }}>Proyectos</h2>
-      {projects.map((project, index) => (
-        <div className={styles.projectSection} key={index}>
+      <h2 className={styles.sectionTitle}>Proyectos</h2>
+      {projects.map((project) => (
+        <div className={styles.projectSection} key={project.title}>
           <div className={styles.stickyMobile}>
             {project.display === 'mobile' ? (
               <div className={styles.mobileMockup}>
@@ -69,7 +69,7 @@ function ProjectsMobile({ id }: Props) {
                 <div className={styles.buttonVolume2}></div>
 
                 <div className={styles.mobileScreen}>
-                  <img src={project.image} alt={project.title} />
+                  <img src={project.image} alt={`Captura de pantalla de ${project.title}`} />
                 </div>
               </div>
             ) : (
@@ -80,7 +80,7 @@ function ProjectsMobile({ id }: Props) {
                   <span></span>
                 </div>
                 <div className={styles.browserScreen}>
-                  <img src={project.image} alt={project.title} />
+                  <img src={project.image} alt={`Captura de pantalla de ${project.title}`} />
                 </div>
               </div>
             )}
@@ -100,16 +100,18 @@ function ProjectsMobile({ id }: Props) {
             )}
 
             <div className={styles.techWrapper}>
-              {project.tech.map((t, i) => (
-                <span key={i} className={styles.techBadge}>{t}</span>
+              {project.tech.map((t) => (
+                <span key={t} className={styles.techBadge}>
+                  {t}
+                </span>
               ))}
             </div>
 
-            <section className={styles.featuresList}>
-              {project.features.map((f, i) => (
-                <p key={i}>{f}</p>
+            <div className={styles.featuresList}>
+              {project.features.map((f, idx) => (
+                <p key={idx}>{f}</p>
               ))}
-            </section>
+            </div>
 
             {project.status && (
               <p className={styles.projectStatus}>{project.status}</p>
@@ -117,12 +119,22 @@ function ProjectsMobile({ id }: Props) {
 
             <div className={styles.projectLinks}>
               {project.link && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.linkBtn}
+                >
                   Ver sitio
                 </a>
               )}
               {project.repo && (
-                <a href={project.repo} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.linkBtn}
+                >
                   Ver código
                 </a>
               )}
