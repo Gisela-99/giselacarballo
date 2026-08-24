@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import styles from "./Footer.module.css";
 import { HiOutlineMail } from "react-icons/hi";
 import {
@@ -61,13 +62,28 @@ function Footer() {
 
     setIsSubmitting(true);
 
-    // Simulación de envío (conectar con Web3Forms, Formspree o EmailJS)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccess(true);
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setSuccess(false), 5000);
-    }, 1000);
+    emailjs
+      .send(
+        "service_h6u38jq",         //Service ID
+        "template_th2i5x6",     //  Template ID 
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        "kpOXoGHZBP6kFjPtK"       //  Public Key 
+      )
+      .then(() => {
+        setIsSubmitting(false);
+        setSuccess(true);
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setSuccess(false), 5000);
+      })
+      .catch((err) => {
+        console.error("Error enviando el mensaje:", err);
+        setIsSubmitting(false);
+        alert("Hubo un problema al enviar el mensaje. Inténtalo de nuevo o escríbeme directamente por email.");
+      });
   };
 
   const copyToClipboard = (text: string) => {
@@ -144,7 +160,7 @@ function Footer() {
           </div>
         </div>
 
-        {/* SECCIÓN FORMULARIO */}
+        {/* SECCIÓN FORMULARIO DE CONTACTO */}
         <div className={styles.formSection}>
           <h3 className={styles.formTitle}>Envíame un mensaje</h3>
 
@@ -201,7 +217,7 @@ function Footer() {
 
             {success && (
               <p className={styles.success}>
-                ¡Mensaje enviado correctamente! Te responderé lo antes posible. 💌
+                ¡Mensaje enviado correctamente! Te responderé lo antes posible. ✨
               </p>
             )}
           </form>
