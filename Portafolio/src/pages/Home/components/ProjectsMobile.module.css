@@ -1,4 +1,4 @@
-/* Título principal de la sección */
+
 .sectionTitle {
   color: #aa533f;
   text-align: center;
@@ -94,7 +94,7 @@
   z-index: -1;
 }
 
-/* ================= MOCKUP MÓVIL (Erova) ================= */
+/* ================= MOCKUP MÓVIL de Erova ================= */
 .mobileMockup {
   position: relative;
   width: 300px;
@@ -204,7 +204,7 @@
   z-index: 5;
 }
 
-/* ================= MOCKUP NAVEGADOR (Secret Barcelona, Planeo) ================= */
+/* ================= MOCKUP NAVEGADOR  ================= */
 .browserMockup {
   width: 100%;
   max-width: 480px;
@@ -306,7 +306,92 @@
   transform: translateY(-2px);
 }
 
-/* ================= RESPONSIVE (Siempre debe ir al final) ================= */
+.browserMockup {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(150, 44, 46, 0.15); /* Resplandor ambiental discreto */
+  transform: rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+.browserMockup:hover {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+  box-shadow: 
+    0 30px 60px -12px rgba(0, 0, 0, 0.6),
+    0 0 35px rgba(150, 44, 46, 0.25);
+}
+
+.mobileMockup {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+.mobileMockup:hover {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+}
+
+
+.linkBtn, .linkBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.linkBtn {
+  background: #962c2e;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(150, 44, 46, 0.3);
+}
+
+.linkBtn:hover {
+  background: #b13537;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(150, 44, 46, 0.45);
+}
+
+.linkBtnSecondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #aa533f;
+  border: 1px solid rgba(170, 83, 63, 0.3);
+}
+
+.linkBtnSecondary:hover {
+  background: rgba(170, 83, 63, 0.15);
+  color: #ffffff;
+  border-color: rgba(170, 83, 63, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Iconos */
+.btnIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.linkBtn:hover .btnIcon {
+  transform: translate(2px, -2px); /* Efecto de despegue en la flecha */
+}
+
+.linkBtnSecondary:hover .btnIcon {
+  transform: scale(1.15);
+}
+
+/* ================= Movil ================= */
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.2rem;
