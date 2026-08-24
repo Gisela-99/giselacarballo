@@ -1,3 +1,4 @@
+/* --- SECCIÓN SOBRE MÍ --- */
 .aboutSection {
   padding: 5rem 2rem;
   max-width: 1100px;
@@ -13,11 +14,13 @@
   transform: translateY(0);
 }
 
+/* --- TÍTULOS Y TEXTO --- */
 .sectionTitle {
   text-align: center;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  color: #962c2e;
+  color: var(--accent-color); 
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .aboutText {
@@ -25,16 +28,18 @@
   margin: 0 auto 3.5rem auto;
   font-size: clamp(1.05rem, 2.5vw, 1.35rem);
   line-height: 1.8;
-  color: #4b5563;
+  color: var(--text-color);
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 .highlight {
-  color: #962c2e;
+  color: var(--accent-color); /* Lee #C4383B */
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-/* GRIDS DE PILARES CLAVE */
+/* --- GRIDS  PILARES  --- */
 .pillarsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -42,51 +47,58 @@
 }
 
 .pillarCard {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--card-bg);
   backdrop-filter: blur(8px);
   padding: 1.8rem 1.2rem;
   border-radius: 14px;
-  border: 1px solid rgba(150, 44, 46, 0.12);
+  border: 1px solid var(--border-color);
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.3s ease, 
-              border-color 0.3s ease;
+              border-color 0.3s ease,
+              background-color 0.3s ease;
 }
 
 .pillarCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(150, 44, 46, 0.12);
-  border-color: rgba(150, 44, 46, 0.3);
+  box-shadow: 0 10px 25px var(--accent-soft);
+  border-color: var(--accent-color);
 }
 
+/* --- ICONOS Y CONTENIDO --- */
 .pillarIcon {
   font-size: 1.8rem;
-  color: #962c2e;
+  color: var(--accent-color);
   margin-bottom: 0.8rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
-  background: #fce3dd;
+  background: var(--accent-soft);
   border-radius: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .pillarCard h3 {
   font-size: 1.1rem;
-  color: #7b2f23;
+  color: var(--text-color);
   margin: 0 0 0.5rem 0;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .pillarCard p {
   font-size: 0.88rem;
-  color: #6b7280;
+  color: var(--text-color);
+  opacity: 0.8;
   line-height: 1.5;
   margin: 0;
+  transition: color 0.3s ease;
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .aboutSection {
     padding: 3rem 1.2rem;

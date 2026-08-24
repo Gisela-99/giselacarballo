@@ -23,29 +23,52 @@ const Navbar: React.FC<{ className?: string }> = ({ className }) => {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  
+
   const { theme, toggleTheme } = useTheme();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Obtener idioma activo actual
-  const currentLang = LANGUAGES.find(
-    (l) => l.code === i18n.language?.slice(0, 2).toLowerCase()
-  ) || LANGUAGES[0];
+  const currentLang =
+    LANGUAGES.find((l) => l.code === i18n.language?.slice(0, 2).toLowerCase()) ||
+    LANGUAGES[0];
 
   const closeMenu = () => {
     setOpen(false);
     setLangDropdownOpen(false);
   };
 
-  // Cerrar el dropdown al hacer clic fuera
+  // 1. Bloquear/desbloquear el scroll de la página cuando el menú está abierto en móvil
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // 2. Cerrar con click fuera o con la tecla Escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setLangDropdownOpen(false);
       }
     };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   const handleSelectLanguage = (lang: LanguageOption) => {
@@ -71,7 +94,8 @@ const Navbar: React.FC<{ className?: string }> = ({ className }) => {
         {/* BOTÓN HAMBURGUESA */}
         <button
           type="button"
-          aria-label="Abrir menú de navegación"
+          aria-label={open ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+          aria-expanded={open}
           className={styles.hamburger}
           onClick={() => setOpen(!open)}
         >
@@ -172,6 +196,7 @@ const Navbar: React.FC<{ className?: string }> = ({ className }) => {
 
             {/* BOTÓN DE TEMA */}
             <button
+              type="button"
               onClick={toggleTheme}
               className={styles.themeToggle}
               aria-label={theme === "light" ? "Activar modo oscuro" : "Activar modo claro"}

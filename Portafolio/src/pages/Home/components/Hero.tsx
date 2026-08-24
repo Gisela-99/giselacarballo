@@ -39,7 +39,7 @@ function Hero() {
       <div className={styles.content}>
         <h1 className={styles.title}>Gisela Carballo Urquidi</h1>
 
-        <p className={styles.subtitle}>
+        <div className={styles.subtitle}>
           <Typewriter
             key={i18n.language} // Reinicia el Typewriter si el usuario cambia el idioma
             steps={[
@@ -58,7 +58,7 @@ function Hero() {
             triggerOnScroll={false}
             hideCursorWhenDone={false}
           />
-        </p>
+        </div>
 
         {/* Breve pitch de impacto traducido */}
         <p className={styles.description}>

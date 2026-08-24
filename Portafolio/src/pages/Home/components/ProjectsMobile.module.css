@@ -1,9 +1,10 @@
-
+/* ================= TÍTULO Y CONTENEDOR ================= */
 .sectionTitle {
-  color: #aa533f;
+  color: var(--accent-color); /* Utiliza tu nuevo carmín #C4383B */
   text-align: center;
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 5vw, 3rem);
   margin-bottom: 1rem;
+  transition: color 0.3s ease;
 }
 
 .projectsWrapper {
@@ -25,22 +26,32 @@
   justify-content: center;
 }
 
+/* ================= TEXTOS ================= */
 .projectText {
   flex: 1;
   max-width: 500px;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #aa533f;
+  color: var(--text-color); /* Se adapta automáticamente a light/dark */
   text-align: left;
+  transition: color 0.3s ease;
 }
 
 .projectText h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #c24e4e;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
 }
 
-/* Badges de tecnologías */
+.featuresList {
+  list-style: disc inside;
+  padding-left: 0;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ================= BADGES DE TECNOLOGÍAS ================= */
 .techWrapper {
   display: flex;
   flex-wrap: wrap;
@@ -51,27 +62,110 @@
 .techBadge {
   display: inline-flex;
   align-items: center;
-  background: rgba(150, 44, 46, 0.1);
-  color: #962c2e;
+  background: var(--accent-soft);
+  color: var(--accent-color);
   padding: 0.35rem 0.9rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
-  border: 1px solid rgba(150, 44, 46, 0.25);
-  transition: background 0.2s ease, transform 0.15s ease;
+  border: 1px solid var(--accent-soft);
+  transition: background 0.2s ease, transform 0.15s ease, color 0.3s ease;
 }
 
 .techBadge:hover {
-  background: rgba(150, 44, 46, 0.2);
+  background: var(--accent-color);
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
-.featuresList {
-  list-style: disc inside;
-  padding-left: 0;
-  margin: 0;
+/* ================= STATUS Y BOTONES ================= */
+.projectStatus {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-top: 0.8rem;
 }
 
+.projectLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.linkBtn, .linkBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.linkBtn {
+  background: var(--accent-color);
+  color: #ffffff;
+  box-shadow: 0 4px 12px var(--accent-soft);
+}
+
+.linkBtn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--accent-soft);
+}
+
+.linkBtnSecondary {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.linkBtnSecondary:hover {
+  background: var(--accent-soft);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.linkBtn:hover .btnIcon {
+  transform: translate(2px, -2px);
+}
+
+.linkBtnSecondary:hover .btnIcon {
+  transform: scale(1.15);
+}
+
+/* ================= LOGOS ================= */
+.logoContainer {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.logoContainer img,
+.logoContainer video {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.logoContainer video {
+  transform: scale(1.5);
+  transform-origin: center;
+}
+
+/* ================= MOCKUP MÓVIL ================= */
 .stickyMobile {
   position: relative;
   flex: 1;
@@ -94,7 +188,6 @@
   z-index: -1;
 }
 
-/* ================= MOCKUP MÓVIL de Erova ================= */
 .mobileMockup {
   position: relative;
   width: 300px;
@@ -102,6 +195,7 @@
   margin: 0 auto;
   border-radius: 50px;
   background: linear-gradient(145deg, #111, #222);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   overflow: hidden;
   display: flex;
@@ -109,11 +203,11 @@
   justify-content: center;
   transform-style: preserve-3d;
   transform: rotateY(-6deg) rotateX(2deg);
-  transition: transform 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
 }
 
 .mobileMockup:hover {
-  transform: rotateY(0deg) rotateX(0deg);
+  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
 }
 
 .mobileScreen {
@@ -169,26 +263,9 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-.buttonPower {
-  right: -6px;
-  top: 40%;
-  width: 4px;
-  height: 50px;
-}
-
-.buttonVolume {
-  left: -6px;
-  top: 30%;
-  width: 4px;
-  height: 30px;
-}
-
-.buttonVolume2 {
-  left: -6px;
-  top: 45%;
-  width: 4px;
-  height: 30px;
-}
+.buttonPower { right: -6px; top: 40%; width: 4px; height: 50px; }
+.buttonVolume { left: -6px; top: 30%; width: 4px; height: 30px; }
+.buttonVolume2 { left: -6px; top: 45%; width: 4px; height: 30px; }
 
 .mobileMockup::after {
   content: '';
@@ -204,21 +281,27 @@
   z-index: 5;
 }
 
-/* ================= MOCKUP NAVEGADOR  ================= */
+/* ================= MOCKUP NAVEGADOR ================= */
 .browserMockup {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
   border-radius: 14px;
   overflow: hidden;
-  background: #1a1a1a;
-  box-shadow: 0 25px 50px -12px rgba(150, 44, 46, 0.3);
-  transform: rotateY(-4deg) rotateX(1deg);
-  transition: transform 0.4s ease;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    0 0 25px var(--accent-soft);
+  transform: rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
 }
 
 .browserMockup:hover {
-  transform: rotateY(0deg) rotateX(0deg);
+  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+  box-shadow: 
+    0 30px 60px -12px rgba(0, 0, 0, 0.6),
+    0 0 35px var(--accent-soft);
 }
 
 .browserBar {
@@ -232,20 +315,11 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #555;
 }
 
-.browserBar span:nth-child(1) {
-  background: #ff5f56;
-}
-
-.browserBar span:nth-child(2) {
-  background: #ffbd2e;
-}
-
-.browserBar span:nth-child(3) {
-  background: #27c93f;
-}
+.browserBar span:nth-child(1) { background: #ff5f56; }
+.browserBar span:nth-child(2) { background: #ffbd2e; }
+.browserBar span:nth-child(3) { background: #27c93f; }
 
 .browserScreen img {
   display: block;
@@ -253,145 +327,7 @@
   height: auto;
 }
 
-/* ================= LOGOS ================= */
-.logoContainer {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-}
-
-.logoContainer img,
-.logoContainer video {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-}
-
-.logoContainer video {
-  transform: scale(1.5);
-  transform-origin: center;
-}
-
-/* ================= STATUS Y LINKS ================= */
-.projectStatus {
-  font-size: 0.85rem;
-  font-style: italic;
-  color: #7b2f23;
-  opacity: 0.8;
-  margin-top: 0.8rem;
-}
-
-.projectLinks {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.2rem;
-}
-
-.linkBtn {
-  display: inline-block;
-  padding: 0.6rem 1.4rem;
-  background: #962c2e;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: background 0.2s ease, transform 0.15s ease;
-}
-
-.linkBtn:hover {
-  background: #7b2f23;
-  transform: translateY(-2px);
-}
-
-.browserMockup {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #111;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    0 20px 40px -15px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(150, 44, 46, 0.15); /* Resplandor ambiental discreto */
-  transform: rotateY(-5deg) rotateX(2deg);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
-}
-
-.browserMockup:hover {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-  box-shadow: 
-    0 30px 60px -12px rgba(0, 0, 0, 0.6),
-    0 0 35px rgba(150, 44, 46, 0.25);
-}
-
-.mobileMockup {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
-}
-
-.mobileMockup:hover {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-}
-
-
-.linkBtn, .linkBtnSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.3rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-.linkBtn {
-  background: #962c2e;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(150, 44, 46, 0.3);
-}
-
-.linkBtn:hover {
-  background: #b13537;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(150, 44, 46, 0.45);
-}
-
-.linkBtnSecondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: #aa533f;
-  border: 1px solid rgba(170, 83, 63, 0.3);
-}
-
-.linkBtnSecondary:hover {
-  background: rgba(170, 83, 63, 0.15);
-  color: #ffffff;
-  border-color: rgba(170, 83, 63, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Iconos */
-.btnIcon {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-
-.linkBtn:hover .btnIcon {
-  transform: translate(2px, -2px); /* Efecto de despegue en la flecha */
-}
-
-.linkBtnSecondary:hover .btnIcon {
-  transform: scale(1.15);
-}
-
-/* ================= Movil ================= */
+/* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.2rem;

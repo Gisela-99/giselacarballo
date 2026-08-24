@@ -1,32 +1,32 @@
-/* index.css */
+/* --- VARIABLES DE COLOR --- */
 
 :root[data-theme="light"] {
-  /* Fondos y textos */
+  /* Fondos y Textos */
   --bg-color: #faf7f6;
   --text-color: #1b1a1a;
   --card-bg: #ffffff;
   --border-color: rgba(27, 26, 26, 0.08);
 
-  /* Acentos (Terracota) */
-  --accent-color: #C05640;
-  --accent-hover: #A34430;
-  --accent-soft: rgba(192, 86, 64, 0.12);
+  /* Tu nuevo color Carmín #C4383B */
+  --accent-color: #C4383B;
+  --accent-hover: #A0282B;
+  --accent-soft: rgba(196, 56, 59, 0.1);
 }
 
 :root[data-theme="dark"] {
-  /* Fondos y textos */
+  /* Fondos y Textos */
   --bg-color: #161515;
   --text-color: #f3efed;
   --card-bg: #212020;
   --border-color: rgba(243, 239, 237, 0.08);
 
-  /* Acentos (Terracota ajustado a modo oscuro) */
-  --accent-color: #E06D53;
-  --accent-hover: #EC7C63;
-  --accent-soft: rgba(224, 109, 83, 0.15);
+  /* Ajuste para modo oscuro (mayor luminosidad sobre fondo oscuro) */
+  --accent-color: #D64D50;
+  --accent-hover: #E85F62;
+  --accent-soft: rgba(214, 77, 80, 0.16);
 }
 
-/* Estilos base globales */
+/* --- RESET BÁSICO --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,4 +38,5 @@ body {
   color: var(--text-color);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }

@@ -1,8 +1,11 @@
-/* Reset básico */
+/* Reset global correcto */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
 
@@ -20,6 +23,7 @@ body {
   color: #913f3f;
   padding: 2rem;
 }
+
 @media (max-width: 768px) {
   .typewriter {
     line-height: 1.8;
