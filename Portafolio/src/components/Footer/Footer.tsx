@@ -1,156 +1,155 @@
-import "./Footer.styles.css";
 import { useState } from "react";
+import styles from "./Footer.module.css";
 import { HiOutlineMail } from "react-icons/hi";
 import {
   FaLinkedin,
   FaGithub,
   FaCopy,
+  FaCheck,
   FaExternalLinkAlt,
+  FaPaperPlane,
 } from "react-icons/fa";
 
 function Footer() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({ name: "", email: "", message: "" });
+  const [copied, setCopied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Actualizar inputs
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    if (errors[e.target.name as keyof typeof errors]) {
+      setErrors({ ...errors, [e.target.name]: "" });
+    }
   };
 
-  // Validación
+  const validate = () => {
+    let valid = true;
+    const newErrors = { name: "", email: "", message: "" };
 
-   const validate = () => {
-  let valid = true;
+    if (!form.name.trim()) {
+      newErrors.name = "El nombre es obligatorio";
+      valid = false;
+    }
 
-  const newErrors: {
-    name: string;
-    email: string;
-    message: string;
-  } = {
-    name: "",
-    email: "",
-    message: "",
+    if (!form.email.trim()) {
+      newErrors.email = "El email es obligatorio";
+      valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Introduce un email válido";
+      valid = false;
+    }
+
+    if (!form.message.trim()) {
+      newErrors.message = "El mensaje es obligatorio";
+      valid = false;
+    } else if (form.message.length < 10) {
+      newErrors.message = "El mensaje debe tener al menos 10 caracteres";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
   };
 
-  if (!form.name.trim()) {
-    newErrors.name = "El nombre es obligatorio";
-    valid = false;
-  }
-
-  if (!form.email.trim()) {
-    newErrors.email = "El email es obligatorio";
-    valid = false;
-  } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-    newErrors.email = "Email inválido";
-    valid = false;
-  }
-
-  if (!form.message.trim()) {
-    newErrors.message = "El mensaje es obligatorio";
-    valid = false;
-  } else if (form.message.length < 10) {
-    newErrors.message = "Debe tener al menos 10 caracteres";
-    valid = false;
-  }
-
-  setErrors(newErrors);
-  return valid;
-};
-  // Submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setSuccess(true);
-    setForm({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
 
-    // Aquí puedes conectar EmailJS / Formspree
+    // Simulación de envío (conectar con Web3Forms, Formspree o EmailJS)
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSuccess(true);
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setSuccess(false), 5000);
+    }, 1000);
   };
 
-  // Copiar texto
   const copyToClipboard = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .catch(() => alert("No se pudo copiar"));
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   return (
-    <footer className="footerContainer" id="contact">
-      <div className="footerGrid">
-        {/* CONTACTO */}
-        <div className="contactSection">
-          <h3 className="footerTitle">Contacto</h3>
+    <footer className={styles.footerContainer} id="contact">
+      <div className={styles.footerGrid}>
+        {/* SECCIÓN INFORMACIÓN DE CONTACTO */}
+        <div className={styles.contactSection}>
+          <h2 className={styles.footerTitle}>Contacto</h2>
+          <p className={styles.contactSubtitle}>
+            ¿Tienes una propuesta o quieres hablar sobre una colaboración? Escríbeme directamente.
+          </p>
 
-          <div className="contactCard">
-            <span className="icon">
-              <HiOutlineMail size={30} />
-            </span>
-            <p className="text">giselacarballour@gmail.com</p>
-            <button
-              type="button"
-              className="action"
-              aria-label="Copiar email"
-              style={{backgroundColor:"transparent", border:"none"}}
-              onClick={() =>
-                copyToClipboard("giselacarballour@gmail.com")
-              }
-            >
-              <FaCopy color="white"/>
-            </button>
-          </div>
+          <div className={styles.cardsWrapper}>
+            <div className={styles.contactCard}>
+              <span className={styles.icon}>
+                <HiOutlineMail size={24} />
+              </span>
+              <div className={styles.cardDetails}>
+                <span className={styles.cardLabel}>Email</span>
+                <p className={styles.text}>giselacarballour@gmail.com</p>
+              </div>
+              <button
+                type="button"
+                className={styles.actionBtn}
+                aria-label="Copiar email"
+                onClick={() => copyToClipboard("giselacarballour@gmail.com")}
+              >
+                {copied ? <FaCheck color="#4ADE80" /> : <FaCopy />}
+              </button>
+            </div>
 
-          <div className="contactCard">
-            <span className="icon">
-              <FaLinkedin size={30} />
-            </span>
-            <p className="text">giselacarballourquidi</p>
             <a
-              className="action"
+              className={styles.contactCardLink}
               href="https://www.linkedin.com/in/giselacarballourquidi"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ir a LinkedIn"
             >
-              <FaExternalLinkAlt />
+              <span className={styles.icon}>
+                <FaLinkedin size={24} />
+              </span>
+              <div className={styles.cardDetails}>
+                <span className={styles.cardLabel}>LinkedIn</span>
+                <p className={styles.text}>giselacarballourquidi</p>
+              </div>
+              <span className={styles.actionIcon}>
+                <FaExternalLinkAlt size={14} />
+              </span>
             </a>
-          </div>
 
-          <div className="contactCard">
-            <span className="icon">
-              <FaGithub size={30} />
-            </span>
-            <p className="text">@Gisela-99</p>
             <a
-              className="action"
+              className={styles.contactCardLink}
               href="https://github.com/Gisela-99"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ir a GitHub"
             >
-              <FaExternalLinkAlt />
+              <span className={styles.icon}>
+                <FaGithub size={24} />
+              </span>
+              <div className={styles.cardDetails}>
+                <span className={styles.cardLabel}>GitHub</span>
+                <p className={styles.text}>@Gisela-99</p>
+              </div>
+              <span className={styles.actionIcon}>
+                <FaExternalLinkAlt size={14} />
+              </span>
             </a>
           </div>
         </div>
 
-        {/* FORMULARIO */}
-        <div className="formSection">
-          <h3 className="footerTitle">Envíame un mensaje</h3>
+        {/* SECCIÓN FORMULARIO */}
+        <div className={styles.formSection}>
+          <h3 className={styles.formTitle}>Envíame un mensaje</h3>
 
-          <form className="contactForm" onSubmit={handleSubmit} noValidate>
-            <div className="formGroup">
+          <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
+            <div className={styles.formGroup}>
               <label htmlFor="name">Nombre</label>
               <input
                 id="name"
@@ -160,49 +159,57 @@ function Footer() {
                 value={form.name}
                 onChange={handleChange}
               />
-              {errors.name && <p className="error">{errors.name}</p>}
+              {errors.name && <p className={styles.error}>{errors.name}</p>}
             </div>
 
-            <div className="formGroup">
+            <div className={styles.formGroup}>
               <label htmlFor="email">Email</label>
               <input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Tu email"
+                placeholder="tu@email.com"
                 value={form.email}
                 onChange={handleChange}
               />
-              {errors.email && (
-                <p className="error">{errors.email}</p>
-              )}
+              {errors.email && <p className={styles.error}>{errors.email}</p>}
             </div>
 
-            <div className="formGroup">
+            <div className={styles.formGroup}>
               <label htmlFor="message">Mensaje</label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="Escribe tu mensaje..."
+                placeholder="¿En qué puedo ayudarte?"
                 value={form.message}
                 onChange={handleChange}
               />
-              {errors.message && (
-                <p className="error">{errors.message}</p>
-              )}
+              {errors.message && <p className={styles.error}>{errors.message}</p>}
             </div>
 
-            <button type="submit" className="submitBtn">
-              Enviar
+            <button 
+              type="submit" 
+              className={styles.submitBtn} 
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Enviando..." : (
+                <>
+                  Enviar mensaje <FaPaperPlane size={14} />
+                </>
+              )}
             </button>
 
             {success && (
-              <p className="success">
-                ¡Mensaje enviado correctamente! 💌
+              <p className={styles.success}>
+                ¡Mensaje enviado correctamente! Te responderé lo antes posible. 💌
               </p>
             )}
           </form>
         </div>
+      </div>
+
+      <div className={styles.copyright}>
+        <p>© {new Date().getFullYear()} Gisela Carballo Urquidi — Desarrolladora Frontend</p>
       </div>
     </footer>
   );
