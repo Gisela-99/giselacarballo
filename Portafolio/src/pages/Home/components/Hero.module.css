@@ -199,7 +199,72 @@
   outline: 2px solid #fff;
   outline-offset: 3px;
 }
+/* --- DESCRIPCIÓN CORTA --- */
+.description {
+  margin-top: 1.2rem;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
 
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 1.5s;
+}
+
+/* --- CONTENEDOR DE BOTONES --- */
+.ctaContainer {
+  margin-top: 2.2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 1.7s;
+}
+
+/* --- BOTÓN PRINCIPAL --- */
+.buttonHeroPrimary {
+  padding: 0.85rem 2.2rem;
+  background: #ffffff;
+  color: #962C2E;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.buttonHeroPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* --- BOTÓN SECUNDARIO (GLASSMORPHISM) --- */
+.buttonHeroSecondary {
+  padding: 0.85rem 2.2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.buttonHeroSecondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
 /* --- ACCESIBILIDAD --- */
 @media (prefers-reduced-motion: reduce) {
   .light1,

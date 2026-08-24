@@ -35,20 +35,18 @@ function Hero() {
       <div className={styles.cursorLight}></div>
 
       <div className={styles.content}>
-        {/* El nombre se queda estático: es tu identidad, no necesita animarse */}
         <h1 className={styles.title}>Gisela Carballo Urquidi</h1>
 
-        {/* El subtítulo rota entre tus 3 perfiles reales con el Typewriter */}
         <p className={styles.subtitle}>
           <Typewriter
             steps={[
-              { type: "write", text: "Desarrolladora Frontend" },
+              { type: "write", text: "Frontend Developer" },
               { type: "pause", duration: 1800 },
               { type: "delete", count: "all" },
-              { type: "write", text: "Diseñadora UI/UX" },
+              { type: "write", text: "React & TypeScript Specialist" },
               { type: "pause", duration: 1800 },
               { type: "delete", count: "all" },
-              { type: "write", text: "WordPress & Figma" },
+              { type: "write", text: "UI/UX Designer & Figma" },
               { type: "pause", duration: 1800 },
               { type: "delete", count: "all" },
             ]}
@@ -59,9 +57,26 @@ function Hero() {
           />
         </p>
 
-        <a href="#projects" className={styles.buttonHero}>
-          Ver Proyectos
-        </a>
+        {/* Breve pitch de impacto para reclutadores */}
+        <p className={styles.description}>
+          Graduada en Historia del Arte reconvertida a Frontend.
+          Construyo interfaces web y apps móviles combinando sensibilidad estética, lógica de código y diseño UI.
+        </p>
+
+        <div className={styles.ctaContainer}>
+          <a href="#projects" className={styles.buttonHeroPrimary}>
+            Ver Proyectos
+          </a>
+          <a 
+            href="/Gisela_Carballo_CV.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            download="Gisela_Carballo_CV.pdf"
+            className={styles.buttonHeroSecondary}
+          >
+            Descargar CV
+          </a>
+        </div>
       </div>
     </section>
   );
