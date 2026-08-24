@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "about": "Sobre Mí",
+    "projects": "Proyectos",
+    "education": "Formación",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "role1": "Desarrolladora Frontend",
+    "role2": "Especialista en React y TypeScript",
+    "role3": "Diseñadora UI/UX y Figma",
+    "description": "Graduada en Historia del Arte reconvertida a Frontend. Construyo interfaces web y apps móviles combinando sensibilidad estética, lógica de código y diseño UI.",
+    "viewProjects": "Ver Proyectos",
+    "downloadCv": "Descargar CV",
+    "cvFileName": "Gisela_Carballo_CV_ES.pdf"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "text": "Soy desarrolladora frontend con formación en Historia del Arte — ese cruce entre <1>análisis visual y lógica de código</1> es lo que más disfruto de mi trabajo. Programo con <3>React y TypeScript</3>, y también diseño en Figma, llevando interfaces desde el boceto hasta el código funcional.",
+    "pillar1Title": "UI/UX & Figma",
+    "pillar1Desc": "Sensibilidad estética y precisión visual aplicada al diseño de componentes.",
+    "pillar2Title": "React & TypeScript",
+    "pillar2Desc": "Desarrollo web modular, tipado seguro y animaciones interactivas.",
+    "pillar3Title": "Apps & Web",
+    "pillar3Desc": "Experiencia en apps móviles (Capacitor/Firebase) y webs de cliente real (WordPress).",
+    "pillar4Title": "Visión Global",
+    "pillar4Desc": "Puente fluido entre el equipo de diseño y el desarrollo técnico frontend."
+  },
+  "projects": {
+    "sectionTitle": "Proyectos",
+    "viewSite": "Ver sitio",
+    "viewCode": "Ver código",
+    "items": {
+      "secretBarcelona": {
+        "title": "Secret Barcelona",
+        "features": [
+          "Realicé el rediseño completo del sitio web en Figma y maqueté los componentes en WordPress para esta agencia de viajes. Desarrollé con IA un plugin de mapa interactivo y widgets personalizados en HTML/CSS, además de aplicar optimizaciones SEO. Tras las prácticas, la empresa continuó contando conmigo para una colaboración remunerada."
+        ],
+        "status": ""
+      },
+      "erova": {
+        "title": "Erova",
+        "features": [
+          "Desarrollé una aplicación de armario digital multiplataforma (iOS/Android) con React y Capacitor. Implementé Firestore para gestión de datos en tiempo real, Cloudinary para la optimización de imágenes e integré la API de Google Generative AI para generar sugerencias de outfits personalizadas."
+        ],
+        "status": "Prototipo funcional activo; uso de APIs en la nube e IA limitado para optimizar y controlar los costes de consumo."
+      },
+      "planeo": {
+        "title": "Planeo",
+        "features": [
+          "Me encargué del desarrollo frontend de las páginas públicas del proyecto. Construí la interfaz responsiva con React y Tailwind CSS, e implementé animaciones complejas e interacciones con GSAP y Framer Motion para enriquecer la experiencia de usuario, integrando la UI con el trabajo del equipo de backend."
+        ],
+        "status": "Proyecto de bootcamp desplegado y activo como demo."
+      }
+    }
+  },
+  "education": {
+    "sectionTitle": "Formación",
+    "items": [
+      {
+        "period": "2018 - 2023",
+        "title": "Grado en Historia del Arte",
+        "place": "Universidad Autónoma de Barcelona",
+        "description": "Formación en análisis visual, historia cultural y sensibilidad estética, aportando criterio para el diseño de interfaces."
+      },
+      {
+        "period": "Ene - Mar 2024",
+        "title": "Diseño Gráfico y Creación de Contenidos",
+        "place": "GRI",
+        "description": "Edición de imágenes con Photoshop y vídeo, enfocada en la producción de contenido digital."
+      },
+      {
+        "period": "Abr - Jul 2024",
+        "title": "Confección y Publicación de Páginas Web",
+        "place": "Centre d'Estudis The Corner",
+        "description": "Introducción a los fundamentos del desarrollo web (HTML/CSS) y gestión básica de contenidos en WordPress."
+      },
+      {
+        "period": "Sep - Dic 2024",
+        "title": "JavaScript y React.js",
+        "place": "Fundación Esplai",
+        "description": "Desarrollo frontend con React, TypeScript y animaciones interactivas con GSAP y Framer Motion."
+      },
+      {
+        "period": "Feb - Nov 2025",
+        "title": "Desarrollo de Aplicaciones Móviles",
+        "place": "Apps Factory (Aspasia)",
+        "description": "Desarrollo de aplicaciones móviles con React, Capacitor y gestión de datos con Firebase."
+      },
+      {
+        "period": "Feb - Mar 2026",
+        "title": "Fundamentos de Programación en Python",
+        "place": "La Salle URL",
+        "description": "Formación práctica en sintaxis, estructuras de datos y resolución de problemas algorítmicos."
+      }
+    ]
+  },
+  "footer": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes una propuesta o quieres hablar sobre una colaboración? Escríbeme directamente.",
+    "formTitle": "Envíame un mensaje",
+    "labels": {
+      "name": "Nombre",
+      "email": "Email",
+      "message": "Mensaje"
+    },
+    "placeholders": {
+      "name": "Tu nombre",
+      "email": "tu@email.com",
+      "message": "¿En qué puedo ayudarte?"
+    },
+    "buttons": {
+      "send": "Enviar mensaje",
+      "sending": "Enviando..."
+    },
+    "validation": {
+      "nameRequired": "El nombre es obligatorio",
+      "emailRequired": "El email es obligatorio",
+      "emailInvalid": "Introduce un email válido",
+      "messageRequired": "El mensaje es obligatorio",
+      "messageMin": "El mensaje debe tener al menos 10 caracteres"
+    },
+    "messages": {
+      "success": "¡Mensaje enviado correctamente! Te responderé lo antes posible. ✨",
+      "error": "Hubo un problema al enviar el mensaje. Inténtalo de nuevo o escríbeme directamente por email."
+    },
+    "role": "Desarrolladora Frontend"
+  }
+}

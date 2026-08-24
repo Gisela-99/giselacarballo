@@ -1,8 +1,10 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./Hero.module.css";
 import Typewriter from "./TypewriterSection";
 
 function Hero() {
+  const { t, i18n } = useTranslation();
   const heroRef = useRef<HTMLElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -39,14 +41,15 @@ function Hero() {
 
         <p className={styles.subtitle}>
           <Typewriter
+            key={i18n.language} // Reinicia el Typewriter si el usuario cambia el idioma
             steps={[
-              { type: "write", text: "Frontend Developer" },
+              { type: "write", text: t("hero.role1") },
               { type: "pause", duration: 1800 },
               { type: "delete", count: "all" },
-              { type: "write", text: "React & TypeScript Specialist" },
+              { type: "write", text: t("hero.role2") },
               { type: "pause", duration: 1800 },
               { type: "delete", count: "all" },
-              { type: "write", text: "UI/UX Designer & Figma" },
+              { type: "write", text: t("hero.role3") },
               { type: "pause", duration: 1800 },
               { type: "delete", count: "all" },
             ]}
@@ -57,24 +60,23 @@ function Hero() {
           />
         </p>
 
-        {/* Breve pitch de impacto para reclutadores */}
+        {/* Breve pitch de impacto traducido */}
         <p className={styles.description}>
-          Graduada en Historia del Arte reconvertida a Frontend.
-          Construyo interfaces web y apps móviles combinando sensibilidad estética, lógica de código y diseño UI.
+          {t("hero.description")}
         </p>
 
         <div className={styles.ctaContainer}>
           <a href="#projects" className={styles.buttonHeroPrimary}>
-            Ver Proyectos
+            {t("hero.viewProjects")}
           </a>
           <a 
-            href="/Gisela_Carballo_CV.pdf" 
+            href={`/${t("hero.cvFileName")}`} 
             target="_blank" 
             rel="noopener noreferrer" 
-            download="Gisela_Carballo_CV.pdf"
+            download={t("hero.cvFileName")}
             className={styles.buttonHeroSecondary}
           >
-            Descargar CV
+            {t("hero.downloadCv")}
           </a>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import emailjs from "@emailjs/browser";
 import styles from "./Footer.module.css";
 import { HiOutlineMail } from "react-icons/hi";
@@ -12,6 +13,8 @@ import {
 } from "react-icons/fa";
 
 function Footer() {
+  const { t } = useTranslation();
+
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({ name: "", email: "", message: "" });
   const [copied, setCopied] = useState(false);
@@ -32,23 +35,23 @@ function Footer() {
     const newErrors = { name: "", email: "", message: "" };
 
     if (!form.name.trim()) {
-      newErrors.name = "El nombre es obligatorio";
+      newErrors.name = t("footer.validation.nameRequired");
       valid = false;
     }
 
     if (!form.email.trim()) {
-      newErrors.email = "El email es obligatorio";
+      newErrors.email = t("footer.validation.emailRequired");
       valid = false;
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      newErrors.email = "Introduce un email válido";
+      newErrors.email = t("footer.validation.emailInvalid");
       valid = false;
     }
 
     if (!form.message.trim()) {
-      newErrors.message = "El mensaje es obligatorio";
+      newErrors.message = t("footer.validation.messageRequired");
       valid = false;
     } else if (form.message.length < 10) {
-      newErrors.message = "El mensaje debe tener al menos 10 caracteres";
+      newErrors.message = t("footer.validation.messageMin");
       valid = false;
     }
 
@@ -64,14 +67,14 @@ function Footer() {
 
     emailjs
       .send(
-        "service_h6u38jq",         //Service ID
-        "template_th2i5x6",     //  Template ID 
+        "service_h6u38jq",         // Service ID
+        "template_th2i5x6",        // Template ID 
         {
           name: form.name,
           email: form.email,
           message: form.message,
         },
-        "kpOXoGHZBP6kFjPtK"       //  Public Key 
+        "kpOXoGHZBP6kFjPtK"        // Public Key 
       )
       .then(() => {
         setIsSubmitting(false);
@@ -82,7 +85,7 @@ function Footer() {
       .catch((err) => {
         console.error("Error enviando el mensaje:", err);
         setIsSubmitting(false);
-        alert("Hubo un problema al enviar el mensaje. Inténtalo de nuevo o escríbeme directamente por email.");
+        alert(t("footer.messages.error"));
       });
   };
 
@@ -98,9 +101,9 @@ function Footer() {
       <div className={styles.footerGrid}>
         {/* SECCIÓN INFORMACIÓN DE CONTACTO */}
         <div className={styles.contactSection}>
-          <h2 className={styles.footerTitle}>Contacto</h2>
+          <h2 className={styles.footerTitle}>{t("footer.title")}</h2>
           <p className={styles.contactSubtitle}>
-            ¿Tienes una propuesta o quieres hablar sobre una colaboración? Escríbeme directamente.
+            {t("footer.subtitle")}
           </p>
 
           <div className={styles.cardsWrapper}>
@@ -162,16 +165,16 @@ function Footer() {
 
         {/* SECCIÓN FORMULARIO DE CONTACTO */}
         <div className={styles.formSection}>
-          <h3 className={styles.formTitle}>Envíame un mensaje</h3>
+          <h3 className={styles.formTitle}>{t("footer.formTitle")}</h3>
 
           <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
             <div className={styles.formGroup}>
-              <label htmlFor="name">Nombre</label>
+              <label htmlFor="name">{t("footer.labels.name")}</label>
               <input
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Tu nombre"
+                placeholder={t("footer.placeholders.name")}
                 value={form.name}
                 onChange={handleChange}
               />
@@ -179,12 +182,12 @@ function Footer() {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t("footer.labels.email")}</label>
               <input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="tu@email.com"
+                placeholder={t("footer.placeholders.email")}
                 value={form.email}
                 onChange={handleChange}
               />
@@ -192,11 +195,11 @@ function Footer() {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="message">Mensaje</label>
+              <label htmlFor="message">{t("footer.labels.message")}</label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="¿En qué puedo ayudarte?"
+                placeholder={t("footer.placeholders.message")}
                 value={form.message}
                 onChange={handleChange}
               />
@@ -208,16 +211,16 @@ function Footer() {
               className={styles.submitBtn} 
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Enviando..." : (
+              {isSubmitting ? t("footer.buttons.sending") : (
                 <>
-                  Enviar mensaje <FaPaperPlane size={14} />
+                  {t("footer.buttons.send")} <FaPaperPlane size={14} />
                 </>
               )}
             </button>
 
             {success && (
               <p className={styles.success}>
-                ¡Mensaje enviado correctamente! Te responderé lo antes posible. ✨
+                {t("footer.messages.success")}
               </p>
             )}
           </form>
@@ -225,7 +228,7 @@ function Footer() {
       </div>
 
       <div className={styles.copyright}>
-        <p>© {new Date().getFullYear()} Gisela Carballo Urquidi — Desarrolladora Frontend</p>
+        <p>© {new Date().getFullYear()} Gisela Carballo Urquidi — {t("footer.role")}</p>
       </div>
     </footer>
   );

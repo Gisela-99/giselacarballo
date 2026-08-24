@@ -1,17 +1,41 @@
+/* index.css */
+
 :root[data-theme="light"] {
+  /* Fondos y textos */
   --bg-color: #faf7f6;
   --text-color: #1b1a1a;
-  --accent-color: rgba(180, 88, 69, 0.6);
+  --card-bg: #ffffff;
+  --border-color: rgba(27, 26, 26, 0.08);
+
+  /* Acentos (Terracota) */
+  --accent-color: #C05640;
+  --accent-hover: #A34430;
+  --accent-soft: rgba(192, 86, 64, 0.12);
 }
 
 :root[data-theme="dark"] {
-  --bg-color: #1b1a1a;
-  --text-color: #faf7f6;
-  --accent-color: rgba(180, 88, 69, 0.8);
+  /* Fondos y textos */
+  --bg-color: #161515;
+  --text-color: #f3efed;
+  --card-bg: #212020;
+  --border-color: rgba(243, 239, 237, 0.08);
+
+  /* Acentos (Terracota ajustado a modo oscuro) */
+  --accent-color: #E06D53;
+  --accent-hover: #EC7C63;
+  --accent-soft: rgba(224, 109, 83, 0.15);
+}
+
+/* Estilos base globales */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
